@@ -18,13 +18,16 @@
 <body>
     
     <h1 id="headn"></h1>
-    <input id="inputAmt" type="text"></input>
+    <input id="inputAmt" type="text">
+    <input id="inputDesc" type="text">
     <button id="btnAddExpense">+</button>
     <script>
         
-        // Get the heading element
+        // Get the elements
         const headEl = document.querySelector("#headn");
-        
+        const inputElement = document.querySelector("#inputAmt");
+        const inputDescEl = document.querySelector("#inputDesc");
+
         // Initial value of expense = 0
         let totalExpense = 0;
 
@@ -35,8 +38,10 @@
         function addExpenseToTotal()
         {  
             // Read value from inputAmt
-            const inputElement = document.querySelector("#inputAmt");
             const textExpense = inputElement.value;
+            const textDesc = inputDescEl.value;
+
+            console.log({textDesc},{textDesc});
 
             // Convert it to a number
             const expense = parseInt(textExpense, 10);
