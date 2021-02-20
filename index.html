@@ -21,12 +21,14 @@
     <input id="inputAmt" type="text">
     <input id="inputDesc" type="text">
     <button id="btnAddExpense">+</button>
+    <div id="expenseTable"></div>
     <script>
         
         // Get the elements
         const headEl = document.querySelector("#headn");
         const inputElement = document.querySelector("#inputAmt");
         const inputDescEl = document.querySelector("#inputDesc");
+        const expenseTableEl = document.querySelector("#expenseTable");
 
         // Array of elements and objects
         const allExpenses = [];
@@ -40,6 +42,7 @@
         // On button click add inputAmt to totalExpense
         function addExpenseToTotal()
         {  
+            // Object for storing amt and desc
             const expenseItem = {}
             
             // Read value from inputAmt
@@ -52,14 +55,22 @@
             expenseItem.amount = expense;
             expenseItem.desc = textDesc;
             allExpenses.push(expenseItem);
-            console.clear();
-            console.table(allExpenses);
 
             // Add that value to totlExpense
             totalExpense = totalExpense + expense;
 
+            const someText = `Expense: ${totalExpense}`;   // Templating
+
             // Set the heading element to totalExpense
-            headEl.textContent = totalExpense;
+            headEl.textContent = someText;
+
+            const allExpenseHTML = allExpenses.map(expenseItem => {
+                return `<div> ${expenseItem.amount} :: ${expenseItem.desc} </div>`
+            });
+
+            const joinedText = allExpenseHTML.join("");
+            
+            expenseTableEl.innerHTML = joinedText;
         }
 
         // Get the btn element
